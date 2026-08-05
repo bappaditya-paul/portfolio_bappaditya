@@ -1,7 +1,5 @@
 # Bappaditya Paul — Portfolio
 
-A pixel-perfect clone of [jdhruv.dev](https://jdhruv.dev/) built with Next.js 15, React 19, Tailwind CSS, and shadcn/ui design system.
-
 ## Tech Stack
 
 | Technology | Purpose |
