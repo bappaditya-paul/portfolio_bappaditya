@@ -4,7 +4,6 @@ import { ConnectSection } from "@/app/sections/connect-section";
 import { GitHubSection } from "@/components/GitHubSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { EducationSection } from "@/app/sections/education-section";
-import { ProjectsSection } from "@/app/sections/projects-section";
 import { AchievementsSection } from "@/app/sections/achievements-section";
 import { QuoteSection } from "@/app/sections/quote-section";
 import { DividerPattern } from "@/components/divider-pattern";
@@ -25,8 +24,6 @@ export default function Home() {
       <ExperienceSection />
       <DividerPattern />
       <EducationSection />
-      <DividerPattern />
-      <ProjectsSection />
       <DividerPattern />
       <AchievementsSection />
       <DividerPattern />

@@ -1,9 +1,39 @@
+# Dependencies & build output
 node_modules
 .next
+
+# Version control
 .git
 .gitignore
+
+# Docs & dev files
 README.md
+*.md
+
+# Local env (secrets never go into image)
 .env*.local
+.env
+
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
+
+# Dev extras (reference screenshots, source audio, etc.)
+others/
+
+# Editor
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker files themselves (not needed in image)
+docker-compose*.yml
+docker.yaml
+Dockerfile*

@@ -28,10 +28,6 @@ export function Navbar() {
     { href: "/blogs", label: "Blogs" },
     { href: "/books", label: "Books" },
     { href: "/favourites", label: "Favourites" },
-    { href: "/#about", label: "About" },
-    { href: "/#connect", label: "Connect" },
-    { href: "/#experience", label: "Experience" },
-    { href: "/#education", label: "Education" },
   ];
 
   return (

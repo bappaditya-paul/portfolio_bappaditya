@@ -1,50 +1,62 @@
-# Base image
-FROM node:20-alpine AS base
+# ─── Stage 1: Dependencies ────────────────────────────────────────────────────
+FROM node:20-alpine AS deps
 
-# Install dependencies only when needed
-FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install dependencies
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --frozen-lockfile
 
-# Rebuild the source code only when needed
-FROM base AS builder
+# ─── Stage 2: Builder ─────────────────────────────────────────────────────────
+FROM node:20-alpine AS builder
+
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Disable Next.js telemetry during build
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+
+# Local music / static assets are baked into the image via public/
+# No Spotify API needed — music is served from public/music/
 
 RUN npm run build
 
-# Production image, copy all the files and run next
-FROM base AS runner
+# ─── Stage 3: Production runner ───────────────────────────────────────────────
+FROM node:20-alpine AS runner
+
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Create non-root user for security
+RUN addgroup --system --gid 1001 nodejs \
+ && adduser  --system --uid 1001 nextjs
 
+# Copy static assets (includes public/music/song.mp3, public/music/cover.jpg, public/images/*)
 COPY --from=builder /app/public ./public
 
-# Set the correct permission for prerender cache
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
+# Pre-create .next and set correct ownership
+RUN mkdir -p .next && chown nextjs:nodejs .next
 
-# Automatically leverage output traces to reduce image size
+# Copy standalone build output
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static   ./.next/static
 
 USER nextjs
 
 EXPOSE 3000
 
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
+# Health check — confirms the app is responding
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+  CMD wget -qO- http://localhost:3000/ || exit 1
+
+LABEL org.opencontainers.image.title="Bappaditya Paul Portfolio" \
+      org.opencontainers.image.description="Personal portfolio — AI/ML + Backend Developer" \
+      org.opencontainers.image.source="https://github.com/bappadityapaul/portfolio"
 
 CMD ["node", "server.js"]

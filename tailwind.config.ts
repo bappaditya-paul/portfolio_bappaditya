@@ -71,6 +71,10 @@ const config: Config = {
           from: { transform: "rotate(0deg)" },
           to: { transform: "rotate(360deg)" },
         },
+        "music-bar": {
+          "0%, 100%": { transform: "scaleY(0.4)" },
+          "50%": { transform: "scaleY(1)" },
+        },
       },
       animation: {
         "collapsible-down": "collapsible-down 0.3s ease-out",
@@ -78,6 +82,7 @@ const config: Config = {
         "fade-in": "fade-in 0.6s ease forwards",
         "scanlines": "scanlines 0.3s linear infinite",
         "rotate": "rotate 8s linear infinite",
+        "music-bar": "music-bar 0.8s ease-in-out infinite",
       },
     },
   },

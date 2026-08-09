@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import { Eye, CircleDot } from "lucide-react";
+
+const LiquidHover = dynamic(() => import("./LiquidHover"), { ssr: false });
 
 export function HeroSection() {
   const [viewCount, setViewCount] = useState(0);
@@ -12,15 +14,15 @@ export function HeroSection() {
 
   const pfpUrls = [
     "/images/avatar.png",
-    "https://api.dicebear.com/7.x/avataaars/svg?seed=Bappaditya&backgroundColor=b6e3f4",
-    "https://api.dicebear.com/7.x/bottts/svg?seed=Bappaditya&backgroundColor=c0aede",
+    "/images/avatar2.png",
+    "/images/avatar3.png",
   ];
 
   const activityTexts = [
-    "Checking activity...",
-    "Building AI systems...",
-    "Training models...",
-    "Exploring LLMs...",
+    "Building backend & GenAI systems...",
+    "Working on LLM applications...",
+    "Exploring FastAPI & backends...",
+    "Training ML models...",
     "Open to opportunities",
   ];
 
@@ -72,24 +74,19 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Avatar */}
+      {/* Avatar with Liquid Distortion */}
       <div className="w-[35%] shrink-0 p-2 sm:w-auto sm:shrink-0 sm:p-5">
-        <div className="aspect-square h-auto w-full rounded-[12px] border border-border p-[4px] transition duration-300 hover:brightness-90 sm:size-32">
-          <div className="relative aspect-square h-auto w-full overflow-hidden rounded-[8px] group cursor-pointer" onClick={togglePfp}>
-            <Image
-              src={pfpUrls[pfpIndex]}
-              alt="Bappaditya Paul's avatar"
-              fill
-              className="select-none rounded-[8px] object-cover transition-opacity duration-150"
-              priority
-            />
-            {/* Glitch scanlines on hover */}
-            <span className="pointer-events-none absolute inset-0 rounded-[8px] opacity-0 group-hover:opacity-100 transition-opacity"
-              style={{
-                background: "linear-gradient(transparent 50%, rgba(0,255,0,0.1) 50%, rgba(0,255,0,0.1) 52%, transparent 52%)",
-                backgroundSize: "100% 4px",
-                animation: "scanlines 0.3s linear infinite",
-              }}
+        <div
+          className="aspect-square h-auto w-full rounded-[12px] border border-border p-[4px] sm:size-32 overflow-hidden cursor-pointer"
+          onClick={togglePfp}
+          title="Click to change avatar"
+        >
+          <div className="relative aspect-square h-auto w-full rounded-[8px] overflow-hidden">
+            <LiquidHover
+              imageSrc={pfpUrls[pfpIndex]}
+              resolution={5}
+              cursorSize={45}
+              intensity={65}
             />
           </div>
         </div>
@@ -131,7 +128,7 @@ export function HeroSection() {
         </div>
 
         <p className="font-mono text-sm leading-snug text-balance text-muted-foreground">
-          21 • AI/ML Developer
+          21 · AI/ML + Backend Developer
         </p>
 
         <span className="flex min-h-4 items-center gap-1.5 font-mono text-xs text-muted-foreground" aria-live="polite">
