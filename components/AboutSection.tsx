@@ -6,28 +6,27 @@ export function AboutSection() {
   return (
     <section className="screen-line-before screen-line-after border-x border-edge" id="about">
       <header className="screen-line-after px-4">
-        <h2 className="font-pixel text-3xl font-semibold py-4">About</h2>
+        <h2 className="font-pixelify text-2xl font-semibold tracking-tight py-4">About</h2>
       </header>
-      <div className="p-4 space-y-4">
-        <div className="prose max-w-none prose-zinc dark:prose-invert prose-headings:text-balance prose-a:font-medium prose-a:text-foreground prose-a:underline prose-a:underline-offset-4 prose-code:rounded-md prose-code:border prose-code:bg-muted/50 prose-code:px-[0.3rem] prose-code:py-[0.2rem] prose-code:text-sm prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-strong:font-medium prose-hr:border-edge prose-sm font-mono text-foreground">
-          <ul>
-            <li>
-              I&apos;m an AI/ML developer building practical software at the intersection of backend engineering, GenAI, and full-stack development.
+      <div className="p-4 space-y-6">
+        <div className="prose max-w-none prose-zinc dark:prose-invert font-sans text-foreground leading-relaxed">
+          <ul className="list-none pl-0 space-y-4">
+            <li className="relative pl-6 text-[14px] sm:text-[15px] before:absolute before:left-0 before:top-[8px] before:size-1.5 before:rounded-full before:bg-zinc-400 dark:before:bg-zinc-600">
+              I&apos;m a builder who&apos;s still figuring things out, but doing it by creating along the way. I enjoy working at the intersection of AI and real-world impact, whether it&apos;s building systems, experimenting with LLMs, or turning ideas into something real.
             </li>
-            <li>
-              I work with Python, FastAPI, machine learning, LLM-powered applications, APIs, databases, and modern web technologies. I enjoy turning ideas into reliable systems — from the model and backend layer to the user-facing product.
+            <li className="relative pl-6 text-[14px] sm:text-[15px] before:absolute before:left-0 before:top-[8px] before:size-1.5 before:rounded-full before:bg-zinc-400 dark:before:bg-zinc-600">
+              At my core, I&apos;m curious not just about technology, but about how it shapes the way people think, act, and grow. That curiosity pushes me beyond just coding into exploring meaning and purpose.
             </li>
-            <li>
-              Currently, I&apos;m focused on getting deeper into backend engineering and GenAI while building real-world applications and contributing to open source.
-            </li>
-            <li>
-              For me, growth comes from building, breaking things, understanding how they work, and continuously improving.
+            <li className="relative pl-6 text-[14px] sm:text-[15px] before:absolute before:left-0 before:top-[8px] before:size-1.5 before:rounded-full before:bg-zinc-400 dark:before:bg-zinc-600">
+              I don&apos;t see growth as just skills or achievements, but as becoming more aware, disciplined, and aligned with what I&apos;m doing, and that&apos;s something I&apos;m continuously working on.
             </li>
           </ul>
         </div>
 
         {/* Local Music Widget */}
-        <SpotifyWidget />
+        <div className="flex justify-center pt-4 w-full">
+          <SpotifyWidget />
+        </div>
       </div>
     </section>
   );

@@ -7,12 +7,12 @@ import { EducationSection } from "@/app/sections/education-section";
 import { AchievementsSection } from "@/app/sections/achievements-section";
 import { QuoteSection } from "@/app/sections/quote-section";
 import { DividerPattern } from "@/components/divider-pattern";
-import { TopPattern } from "@/components/top-pattern";
+import { CoverVideo } from "@/components/CoverVideo";
 
 export default function Home() {
   return (
     <>
-      <TopPattern />
+      <CoverVideo />
       <HeroSection />
       <DividerPattern />
       <AboutSection />

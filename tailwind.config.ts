@@ -41,9 +41,11 @@ const config: Config = {
         warning: "var(--warning)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        geist: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
         pixel: ["var(--font-pixel)", "VT323", "monospace"],
+        pixelify: ["var(--font-pixelify)", "Pixelify Sans", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

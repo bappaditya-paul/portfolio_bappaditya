@@ -41,15 +41,38 @@ npm run dev
 npm run build
 ```
 
-## Deployment
+## Docker Setup & Workflow
 
-Deploy to Vercel:
+### 1. Live Reload Development (See changes immediately without rebuilding)
+Mounts your code into the container so any changes to `app/`, `components/`, etc. update instantly in the running container.
+
 ```bash
-npm i -g vercel
-vercel --prod
+docker compose up portfolio-dev --build
+```
+> Access at: **http://localhost:3000**
+
+---
+
+### 2. Production Docker Build & Run (Updated Image)
+Whenever you want to rebuild and update the standalone production container:
+
+```bash
+# Build & start container in detached background mode
+docker compose up portfolio --build -d
+
+# Check running container status
+docker compose ps
+
+# View container logs
+docker compose logs -f portfolio
+
+# Stop container
+docker compose down
 ```
 
-Or use GitHub Pages, Netlify, or any static host.
+---
+
+## Deployment
 
 ## File Structure
 

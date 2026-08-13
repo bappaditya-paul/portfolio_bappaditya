@@ -123,7 +123,7 @@ export function ProjectsSection() {
   return (
     <section className="screen-line-before screen-line-after border-x border-edge" id="projects">
       <header className="screen-line-after px-4">
-        <h2 className="font-pixel text-3xl font-semibold py-4">Projects</h2>
+        <h2 className="font-pixelify text-2xl font-semibold tracking-tight py-4">Projects</h2>
       </header>
       <div className="pr-2 pl-4">
         {projects.map((item, i) => (

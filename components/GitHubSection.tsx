@@ -38,7 +38,7 @@ export function GitHubSection() {
     <section className="screen-line-before screen-line-after border-x border-edge" id="github">
       <header className="screen-line-after px-4">
         <div className="flex items-center justify-between py-4">
-          <h2 className="font-pixel text-3xl font-semibold">GitHub Activity</h2>
+          <h2 className="font-pixelify text-2xl font-semibold tracking-tight">GitHub Activity</h2>
           <div className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
             <Info className="w-3.5 h-3.5" />
             <span>Didn&apos;t code today</span>

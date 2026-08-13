@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, VT323 } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { JetBrains_Mono, VT323, Pixelify_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import UserCursor from "@/components/UserCursor";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+// GeistSans is from the 'geist' package — no next/font/google needed
+// GeistSans.variable is '--font-geist-sans'; we alias it to '--font-sans' via tailwind config
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -19,6 +19,11 @@ const vt323 = VT323({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-pixel",
+});
+
+const pixelifySans = Pixelify_Sans({
+  subsets: ["latin"],
+  variable: "--font-pixelify",
 });
 
 export const metadata: Metadata = {
@@ -107,8 +112,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} ${vt323.variable} font-sans antialiased`}>
+      <body className={`${GeistSans.variable} ${jetbrainsMono.variable} ${vt323.variable} ${pixelifySans.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <UserCursor name="bappa" />
           <Navbar />
           <main className="max-w-screen overflow-x-hidden px-2">
             <div className="mx-auto md:max-w-3xl">{children}</div>

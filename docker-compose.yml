@@ -13,8 +13,6 @@ services:
       - PORT=3000
       - HOSTNAME=0.0.0.0
       - NEXT_TELEMETRY_DISABLED=1
-    # Static assets (music, images) are baked into the image.
-    # No external API secrets needed — Spotify API removed in favour of local music.
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:3000/"]
       interval: 30s
@@ -26,3 +24,5 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+

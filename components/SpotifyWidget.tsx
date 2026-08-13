@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Music, Play, Pause } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 // ── MUSIC CONFIGURATION ──────────────────────────────────────────────────────
-// Change these values to swap the song at any time
 const nowPlaying = {
   title: "Tum Prem Ho (Reprise)",
   artist: "Jubin Nautiyal",
@@ -47,33 +47,41 @@ export function SpotifyWidget() {
   };
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="w-full max-w-[440px] sm:max-w-[480px]">
       <button
         onClick={togglePlay}
         disabled={error}
         type="button"
         aria-label={isPlaying ? "Pause music" : "Play music"}
-        className="group flex w-full items-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900 px-3 py-3 text-sm transition-all duration-300 hover:bg-neutral-800 hover:border-neutral-700 disabled:cursor-not-allowed disabled:opacity-60"
+        className={cn(
+          "group flex w-full items-center gap-4 rounded-xl p-3 text-sm transition-all duration-300",
+          "border border-zinc-200 bg-zinc-50 hover:bg-zinc-100/70 hover:border-zinc-300",
+          "dark:border-zinc-800/80 dark:bg-zinc-900/40 dark:hover:bg-zinc-900/80 dark:hover:border-zinc-700",
+          "disabled:cursor-not-allowed disabled:opacity-60 shadow-sm"
+        )}
       >
         {/* Album Art / Icon */}
-        <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md" aria-hidden="true">
+        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg shadow-inner bg-zinc-100 dark:bg-zinc-800" aria-hidden="true">
           {error ? (
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-neutral-800">
-              <Music className="text-neutral-500" size={16} />
+            <div className="flex h-full w-full items-center justify-center">
+              <Music className="text-zinc-400 dark:text-zinc-500" size={18} />
             </div>
           ) : (
             <>
               <img
                 src={nowPlaying.cover}
                 alt={nowPlaying.title}
-                className="h-10 w-10 rounded-md object-cover"
+                className={cn(
+                  "h-full w-full object-cover transition-transform duration-500 group-hover:scale-105",
+                  isPlaying && "animate-rotate rounded-full"
+                )}
               />
               {/* Play/Pause overlay on hover */}
-              <div className="absolute inset-0 flex items-center justify-center rounded-md bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
+              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
                 {isPlaying ? (
-                  <Pause className="text-white" size={14} />
+                  <Pause className="text-white" size={16} />
                 ) : (
-                  <Play className="text-white" size={14} />
+                  <Play className="text-white" size={16} fill="currentColor" />
                 )}
               </div>
             </>
@@ -81,8 +89,8 @@ export function SpotifyWidget() {
         </div>
 
         {/* Text Info */}
-        <div className="flex min-w-0 flex-1 flex-col gap-0.5 leading-tight text-left">
-          <span className="flex items-center gap-1.5 text-[11px] font-mono leading-none text-neutral-500">
+        <div className="flex min-w-0 flex-1 flex-col gap-1 leading-tight text-left">
+          <span className="flex items-center gap-1.5 text-[10px] font-mono font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
             {isPlaying && (
               <span className="inline-flex gap-[2px] items-end h-3">
                 <span className="w-[2px] bg-[#1db954] animate-[music-bar_0.8s_ease-in-out_infinite]" style={{height:"8px"}} />
@@ -92,10 +100,10 @@ export function SpotifyWidget() {
             )}
             {isPlaying ? "Now playing" : "↑ Last played"}
           </span>
-          <span className="truncate text-sm font-semibold leading-snug text-neutral-100">
+          <span className="truncate text-sm font-semibold leading-snug text-zinc-800 dark:text-zinc-100">
             {nowPlaying.title}
           </span>
-          <span className="truncate font-mono text-xs leading-none text-neutral-400">
+          <span className="truncate font-mono text-xs leading-none text-zinc-500 dark:text-zinc-400">
             {nowPlaying.artist}
           </span>
         </div>
@@ -104,7 +112,7 @@ export function SpotifyWidget() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          className="h-5 w-5 shrink-0 text-[#1db954]"
+          className="h-5 w-5 shrink-0 text-[#1db954] transition-transform duration-300 group-hover:scale-110"
           fill="currentColor"
           aria-label="Spotify"
         >
