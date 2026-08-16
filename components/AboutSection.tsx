@@ -6,7 +6,7 @@ export function AboutSection() {
   return (
     <section className="screen-line-before screen-line-after border-x border-edge" id="about">
       <header className="screen-line-after px-4">
-        <h2 className="font-pixelify text-2xl font-semibold tracking-tight py-4">About</h2>
+        <h2 className="font-serif text-3xl font-semibold tracking-tight py-4">About</h2>
       </header>
       <div className="p-4 space-y-6">
         <div className="prose max-w-none prose-zinc dark:prose-invert font-sans text-foreground leading-relaxed">

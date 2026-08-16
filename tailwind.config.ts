@@ -41,11 +41,12 @@ const config: Config = {
         warning: "var(--warning)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        geist: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        geist: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
         pixel: ["var(--font-pixel)", "VT323", "monospace"],
         pixelify: ["var(--font-pixelify)", "Pixelify Sans", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

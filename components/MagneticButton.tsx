@@ -5,6 +5,7 @@
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useState, useEffect, type CSSProperties } from "react";
+import { playUISFX } from "@/lib/uisfx";
 
 const RANGE_PER_POINT = 18;
 const MAX_PULL = 0.5;
@@ -110,6 +111,9 @@ export default function MagneticButton({
         setOrigin({ x: lx, y: ly, d });
         hoverRef.current = inside;
         setHover(inside);
+        if (inside) {
+          playUISFX("hover");
+        }
       }
 
       if (gap > reach) {
@@ -141,6 +145,7 @@ export default function MagneticButton({
     <motion.a
       ref={ref}
       href={link || undefined}
+      onClick={() => playUISFX("press")}
       target={link && newTab ? "_blank" : undefined}
       rel={link && newTab ? "noopener noreferrer" : undefined}
       style={{

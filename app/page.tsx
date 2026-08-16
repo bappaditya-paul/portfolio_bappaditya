@@ -8,10 +8,12 @@ import { AchievementsSection } from "@/app/sections/achievements-section";
 import { QuoteSection } from "@/app/sections/quote-section";
 import { DividerPattern } from "@/components/divider-pattern";
 import { CoverVideo } from "@/components/CoverVideo";
+import { ScrollSectionObserver } from "@/components/ScrollSectionObserver";
 
 export default function Home() {
   return (
     <>
+      <ScrollSectionObserver />
       <CoverVideo />
       <HeroSection />
       <DividerPattern />

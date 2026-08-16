@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Music, Play, Pause } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { playUISFX } from "@/lib/uisfx";
 
 // ── MUSIC CONFIGURATION ──────────────────────────────────────────────────────
 const nowPlaying = {
@@ -33,6 +34,7 @@ export function SpotifyWidget() {
   const togglePlay = async () => {
     const audio = audioRef.current;
     if (!audio || error) return;
+    playUISFX("tap");
     try {
       if (isPlaying) {
         audio.pause();

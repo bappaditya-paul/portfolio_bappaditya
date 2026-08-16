@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { GraduationCap, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { playUISFX } from "@/lib/uisfx";
 
 interface EducationItem {
   school: string;
@@ -11,6 +12,7 @@ interface EducationItem {
   major: string;
   period: string;
   details?: string;
+  logo?: string;
 }
 
 const educations: EducationItem[] = [
@@ -21,6 +23,7 @@ const educations: EducationItem[] = [
     major: "Data Science and Applications",
     period: "2025 — 2029",
     details: "CGPA: 7.0 / 10\nChennai, India",
+    logo: "/images/iit.svg",
   },
   {
     school: "ICFAI University Tripura",
@@ -28,6 +31,7 @@ const educations: EducationItem[] = [
     major: "BCA",
     period: "2024 — 2027",
     details: "CGPA: 8.3 / 10\nTripura, India",
+    logo: "/images/icfai.png",
   },
 ];
 
@@ -36,9 +40,13 @@ function EducationCard({ item }: { item: EducationItem }) {
 
   return (
     <div className="screen-line-after space-y-4 py-4">
-      <div className="flex items-center gap-3">
-        <div className="flex size-6 shrink-0 items-center justify-center select-none">
-          <span className="flex size-2 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+      <div className="flex items-center gap-4">
+        <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-edge bg-white dark:bg-zinc-900 p-1.5 select-none overflow-hidden">
+          {item.logo ? (
+            <img src={item.logo} alt={item.school} className="w-full h-full object-contain rounded" />
+          ) : (
+            <GraduationCap className="size-5 text-muted-foreground" />
+          )}
         </div>
         <h3 className="flex-1 text-lg leading-snug font-medium">
           {item.schoolUrl ? (
@@ -56,16 +64,19 @@ function EducationCard({ item }: { item: EducationItem }) {
         </h3>
       </div>
 
-      <div className="relative space-y-2 before:absolute before:left-3 before:h-full before:w-px before:bg-border">
+      <div className="relative space-y-2 before:absolute before:left-5 before:h-full before:w-px before:bg-border">
         <div className="relative">
           <button
             type="button"
-            onClick={() => setOpen(!open)}
-            className="block w-full text-left relative before:absolute before:-top-1 before:-right-1 before:-bottom-1.5 before:left-7 before:-z-[1] before:rounded-lg before:transition-[background-color] before:ease-out hover:before:bg-accent-muted"
+            onClick={() => {
+              playUISFX("tap");
+              setOpen(!open);
+            }}
+            className="block w-full text-left relative before:absolute before:-top-1 before:-right-1 before:-bottom-1.5 before:left-11 before:-z-[1] before:rounded-lg before:transition-[background-color] before:ease-out hover:before:bg-accent-muted"
           >
             <div className="relative z-[1] mb-1 flex items-center gap-3">
               <div
-                className="flex size-6 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground border border-muted-foreground/15 ring-1 ring-edge ring-offset-1 ring-offset-background"
+                className="flex size-6 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground border border-muted-foreground/15 ring-1 ring-edge ring-offset-1 ring-offset-background ml-2"
                 aria-hidden="true"
               >
                 <GraduationCap className="size-4" />
@@ -76,12 +87,12 @@ function EducationCard({ item }: { item: EducationItem }) {
               </h4>
               <ChevronUp
                 className={cn(
-                  "shrink-0 text-muted-foreground size-4 transition-transform duration-300",
+                  "shrink-0 text-muted-foreground size-4 transition-transform duration-300 mr-2",
                   !open && "rotate-180"
                 )}
               />
             </div>
-            <div className="flex items-center gap-0.5 pl-9 text-sm text-muted-foreground">
+            <div className="flex items-center gap-0.5 pl-11 text-sm text-muted-foreground">
               {item.period.split(" — ").map((part, i) => (
                 <span key={i}>
                   {i > 0 && <span className="font-mono">—</span>}
@@ -98,7 +109,7 @@ function EducationCard({ item }: { item: EducationItem }) {
             )}
           >
             {item.details && (
-              <p className="pl-9 pt-3 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+              <p className="pl-11 pt-3 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
                 {item.details}
               </p>
             )}
@@ -113,7 +124,7 @@ export function EducationSection() {
   return (
     <section className="screen-line-before screen-line-after border-x border-edge" id="education">
       <header className="screen-line-after px-4">
-        <h2 className="font-pixelify text-2xl font-semibold tracking-tight py-4">Education</h2>
+        <h2 className="font-serif text-3xl font-semibold tracking-tight py-4">Education</h2>
       </header>
       <div className="pr-2 pl-4">
         {educations.map((item, i) => (

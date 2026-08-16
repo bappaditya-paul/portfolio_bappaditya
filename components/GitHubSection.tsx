@@ -1,6 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import { Info } from "lucide-react";
+import { playUISFX } from "@/lib/uisfx";
 
 export function GitHubSection() {
   // Generates realistic mock contribution data blocks matching GitHub contribution graph styling
@@ -24,6 +26,15 @@ export function GitHubSection() {
   };
 
   const { weeks, months } = generateContributionWeeks();
+  const lastTickTime = useRef(0);
+
+  const playThrottledHover = () => {
+    const now = Date.now();
+    if (now - lastTickTime.current > 80) {
+      playUISFX("hover");
+      lastTickTime.current = now;
+    }
+  };
 
   const getLevelColor = (level: number) => {
     switch (level) {
@@ -38,7 +49,7 @@ export function GitHubSection() {
     <section className="screen-line-before screen-line-after border-x border-edge" id="github">
       <header className="screen-line-after px-4">
         <div className="flex items-center justify-between py-4">
-          <h2 className="font-pixelify text-2xl font-semibold tracking-tight">GitHub Activity</h2>
+          <h2 className="font-serif text-3xl font-semibold tracking-tight">GitHub Activity</h2>
           <div className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
             <Info className="w-3.5 h-3.5" />
             <span>Didn&apos;t code today</span>
@@ -62,8 +73,9 @@ export function GitHubSection() {
                 {week.map((level, dIdx) => (
                   <div
                     key={dIdx}
-                    className={`w-2.5 h-2.5 rounded-[2px] transition-colors ${getLevelColor(level)}`}
+                    className={`w-2.5 h-2.5 rounded-[2px] transition-colors ${getLevelColor(level)} cursor-pointer hover:scale-110`}
                     title={`Activity level: ${level}`}
+                    onMouseEnter={playThrottledHover}
                   />
                 ))}
               </div>

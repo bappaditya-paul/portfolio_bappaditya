@@ -59,7 +59,7 @@ export function ConnectSection() {
   return (
     <section className="screen-line-before screen-line-after border-x border-edge" id="connect">
       <header className="screen-line-after px-4">
-        <h2 className="font-pixelify text-2xl font-semibold tracking-tight py-4">Connect</h2>
+        <h2 className="font-serif text-3xl font-semibold tracking-tight py-4">Connect</h2>
       </header>
       <div className="p-4">
         <div className="flex flex-wrap items-center gap-3 pb-1">

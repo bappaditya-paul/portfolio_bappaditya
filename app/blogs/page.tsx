@@ -12,8 +12,8 @@ export default function BlogsPage() {
           <ArrowLeft className="w-4 h-4" />
           Back
         </Link>
-        <h1 className="font-pixel text-4xl font-bold mb-4">Blogs</h1>
-        <p className="text-muted-foreground font-mono text-sm leading-relaxed">
+        <h1 className="font-serif text-4xl font-semibold tracking-tight mb-4">Blogs</h1>
+        <p className="text-muted-foreground font-sans text-base leading-relaxed">
           Thoughts, technical notes, and essays coming soon.
         </p>
       </div>

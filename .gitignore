@@ -31,3 +31,16 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Workspace and custom tooling
+.agents/
+.claude/
+.codex/
+.repowise/
+.vscode/
+important asset/
+important\ asset/
+important\ asset\ /
+"important asset "/
+"important asset "/**
+others/

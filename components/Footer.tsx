@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useUISFX } from "@/lib/uisfx";
 
 // ── PIXEL ART GRIDS (24x24 Matrix) ───────────────────────────────────────────
 // 0: transparent, 1: white, 2: gray shadow, 3: dark outline, 
@@ -94,6 +95,7 @@ function InteractiveCat() {
   const [isActive, setIsActive] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const { play } = useUISFX();
 
   // Sync theme
   useEffect(() => {
@@ -122,8 +124,14 @@ function InteractiveCat() {
 
   return (
     <div
-      onClick={() => setIsActive(!isActive)}
-      onMouseEnter={() => setIsHovered(true)}
+      onClick={() => {
+        setIsActive(!isActive);
+        play("level-up");
+      }}
+      onMouseEnter={() => {
+        setIsHovered(true);
+        play("hover");
+      }}
       onMouseLeave={() => setIsHovered(false)}
       className="relative flex items-center justify-center cursor-pointer select-none p-1 transition-transform active:scale-95"
       title="Hover or click to wake the cat!"

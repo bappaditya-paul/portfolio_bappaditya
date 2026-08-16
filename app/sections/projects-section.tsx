@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CodeXml, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { playUISFX } from "@/lib/uisfx";
 
 interface ProjectItem {
   name: string;
@@ -61,7 +62,10 @@ function ProjectCard({ item }: { item: ProjectItem }) {
         <div className="relative">
           <button
             type="button"
-            onClick={() => setOpen(!open)}
+            onClick={() => {
+              playUISFX("tap");
+              setOpen(!open);
+            }}
             className="block w-full text-left relative before:absolute before:-top-1 before:-right-1 before:-bottom-1.5 before:left-7 before:-z-[1] before:rounded-lg before:transition-[background-color] before:ease-out hover:before:bg-accent-muted"
           >
             <div className="relative z-[1] mb-1 flex items-center gap-3">
@@ -123,7 +127,7 @@ export function ProjectsSection() {
   return (
     <section className="screen-line-before screen-line-after border-x border-edge" id="projects">
       <header className="screen-line-after px-4">
-        <h2 className="font-pixelify text-2xl font-semibold tracking-tight py-4">Projects</h2>
+        <h2 className="font-serif text-3xl font-semibold tracking-tight py-4">Projects</h2>
       </header>
       <div className="pr-2 pl-4">
         {projects.map((item, i) => (
